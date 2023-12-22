@@ -11,7 +11,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to='/'>
               <img
-                className='hidden md:block ml-3'
+                className=' md:block ml-3'
                 src={logo}
                 alt='logo'
                 width='200'

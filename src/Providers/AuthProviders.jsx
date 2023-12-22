@@ -50,7 +50,9 @@ const AuthProviders = ({children}) => {
         logOut,
         signInWithGoogle,
         signInWithGitHub,
-        handleUpdateProfile
+        handleUpdateProfile,
+        user,
+        loading
 
 
 

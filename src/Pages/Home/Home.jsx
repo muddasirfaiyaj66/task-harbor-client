@@ -3,9 +3,9 @@ import bannerImg from '../../assets/4850077_42.jpg'
 const Home = () => {
     return (
         <div>
-            <div className='md:flex justify-center items-center gap-4 max-w-screen-xl mx-auto p-5 md:p-10 '>
+            <div className='md:flex justify-center items-center gap-4 max-w-screen-xl mx-auto p-5 md:p-10  '>
                 <div className='flex-1'>
-                    <div className='text-center'>
+                    <div className='text-center mt-20'>
                         <h1 className='lg:text-7xl space-y-5 text-5xl font-bold text-[#515f66] '>
                             Best Way to <br />
                             Manage Your <br />
