@@ -49,6 +49,18 @@ const MenuDropdown = () => {
             >
               Home
             </Link>
+            <Link
+              to='https://github.com/muddasirfaiyaj66'
+              className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+            >
+              Contact
+            </Link>
+            <Link
+              to='/dashboard'
+              className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+            >
+              Dashboard
+            </Link>
 
            {
             user? 

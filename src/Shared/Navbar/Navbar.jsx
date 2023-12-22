@@ -35,12 +35,23 @@ const Navbar = () => {
       <li >
        
         <NavLink
-          to="/about"
+          to="https://github.com/muddasirfaiyaj66"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "py-4 px-2 text-green-500 font-semibold hover:text-green-500 transition duration-300" : "py-4 px-2 text-gray-500 font-semibold hover:text-green-500  "
           }
         >
-          About
+          Contact
+        </NavLink>
+      </li>
+      <li >
+       
+        <NavLink
+          to="/dashboard"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "py-4 px-2 text-green-500 font-semibold hover:text-green-500 transition duration-300" : "py-4 px-2 text-gray-500 font-semibold hover:text-green-500  "
+          }
+        >
+          Dashboard
         </NavLink>
       </li>
       </ul>
