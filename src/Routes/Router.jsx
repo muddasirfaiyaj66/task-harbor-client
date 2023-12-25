@@ -9,6 +9,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layouts/Dashboard";
 import Tasks from "../Pages/Dashboard/Tasks/Tasks";
+import Edit from "../Pages/Edit/Edit";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -37,7 +38,13 @@ const router = createBrowserRouter([
         children: [
             {
                 path:'tasks',
-                element:<Tasks></Tasks>
+                element:<PrivateRoute><Tasks></Tasks></PrivateRoute>
+            },
+            {
+                path:'edit/:id',
+                element:<PrivateRoute>
+                    <Edit></Edit>
+                </PrivateRoute>
             }
         ]
     }

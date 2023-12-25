@@ -7,7 +7,7 @@ const useTaskData = () => {
     const {user}=useAuth();
     const axiosPublic = useAxiosPublic()
 
-    const {data , refetch}=useQuery({
+    const {data , refetch,isLoading}=useQuery({
         queryKey:['taskData',user],
         queryFn: async ()=>{
             const res= await axiosPublic.get(`/tasks?email=${user?.email}`) 
@@ -17,7 +17,7 @@ const useTaskData = () => {
 
 
     })
-    return [data, refetch]
+    return [data, refetch,isLoading]
 };
 
 export default useTaskData;

@@ -5,7 +5,7 @@ import { TiThMenu } from "react-icons/ti";
 const Dashboard = () => {
     const {user}=useAuth();
     return (
-<div className="drawer lg:drawer-open">
+<div data-aos="fade-up" className="drawer lg:drawer-open">
 
 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="  p-3 ">

@@ -10,7 +10,7 @@ const Navbar = () => {
           <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
             {/* Logo */}
             <Link to='/'>
-              <img
+              <img  data-aos="zoom-out-down"
                 className=' md:block ml-3'
                 src={logo}
                 alt='logo'

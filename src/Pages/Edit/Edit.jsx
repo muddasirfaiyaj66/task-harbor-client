@@ -1,10 +1,19 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import useTaskData from '../../Hooks/useTaskData';
+
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { BiTask } from 'react-icons/bi';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
+
+import { useParams } from 'react-router-dom';
+import {  useQuery } from '@tanstack/react-query';
 const Edit = () => {
-    const [data, refetch] = useTaskData();
+    
+    const {user}=useAuth();
+    const {id}=useParams();
+    const navigate = useNavigate();
+    console.log(id);
     const axiosPublic = useAxiosPublic();
     const {
         register,
@@ -12,6 +21,14 @@ const Edit = () => {
         reset,
         formState: { errors },
     } = useForm();
+    const {data:singleData, refetch}=useQuery({
+        queryKey:['getSingleData' , id],
+        queryFn:async()=>{
+            const res = await axiosPublic(`/tasks/${id}`)
+            return res.data;
+        }
+        
+    })
     const onSubmit = async (data) => {
         const taskItems = {
             title: data.title,
@@ -21,20 +38,22 @@ const Edit = () => {
             email: user?.email,
             status: 'to-do',
         };
-
+   
         axiosPublic
-            .post('/tasks', taskItems)
+            .patch(`/tasks/${id}`, taskItems)
             .then((res) => {
                 if (res?.data) {
                     reset();
-                    refetch();
+                    refetch()
+                    
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Task Added',
+                        title: 'Task Updated',
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    navigate('/dashboard/tasks');
                 }
             })
             .catch((error) => {
@@ -57,6 +76,7 @@ const Edit = () => {
                 <input
                     {...register('title', { required: true })}
                     type="text"
+                    defaultValue={singleData?.title}
                     placeholder="Title"
                     className="input input-bordered w-full"
                 />
@@ -68,6 +88,7 @@ const Edit = () => {
                 </label>
                 <textarea
                     {...register('description', { required: true })}
+                    defaultValue={singleData?.description}
                     className="textarea textarea-primary"
                     placeholder="Description"
                 ></textarea>
@@ -79,6 +100,7 @@ const Edit = () => {
                 <input
                     {...register('deadline', { required: true })}
                     type="date"
+                    defaultValue={singleData?.deadline}
                     className="input input-bordered w-full"
                 />
             </div>
@@ -87,13 +109,12 @@ const Edit = () => {
                     <span className="label-text"> Priority</span>
                 </label>
                 <select
-                    defaultValue="default"
+                    defaultValue={singleData?.priority}
                     {...register('priority', { required: true })}
                     className="select select-warning w-full max-w-xs"
                 >
-                    <option value="default" disabled selected hidden>
-                        priority
-                    </option>
+                   
+                    <option value={singleData?.priority}>{singleData?.priority}</option>
                     <option value="low">low</option>
                     <option value="moderate">moderate</option>
                     <option value="high">high</option>
